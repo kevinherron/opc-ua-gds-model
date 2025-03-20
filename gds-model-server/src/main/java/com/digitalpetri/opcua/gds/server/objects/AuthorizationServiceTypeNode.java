@@ -18,20 +18,56 @@ import org.eclipse.milo.opcua.stack.core.types.structured.AccessRestrictionType;
 import org.eclipse.milo.opcua.stack.core.types.structured.RolePermissionType;
 import org.eclipse.milo.opcua.stack.core.types.structured.UserTokenPolicy;
 
-public class AuthorizationServiceTypeNode extends BaseObjectTypeNode implements AuthorizationServiceType {
-  public AuthorizationServiceTypeNode(UaNodeContext context, NodeId nodeId,
-      QualifiedName browseName, LocalizedText displayName, LocalizedText description,
-      UInteger writeMask, UInteger userWriteMask, RolePermissionType[] rolePermissions,
-      RolePermissionType[] userRolePermissions, AccessRestrictionType accessRestrictions,
+public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
+    implements AuthorizationServiceType {
+  public AuthorizationServiceTypeNode(
+      UaNodeContext context,
+      NodeId nodeId,
+      QualifiedName browseName,
+      LocalizedText displayName,
+      LocalizedText description,
+      UInteger writeMask,
+      UInteger userWriteMask,
+      RolePermissionType[] rolePermissions,
+      RolePermissionType[] userRolePermissions,
+      AccessRestrictionType accessRestrictions,
       UByte eventNotifier) {
-    super(context, nodeId, browseName, displayName, description, writeMask, userWriteMask,rolePermissions, userRolePermissions, accessRestrictions, eventNotifier);
+    super(
+        context,
+        nodeId,
+        browseName,
+        displayName,
+        description,
+        writeMask,
+        userWriteMask,
+        rolePermissions,
+        userRolePermissions,
+        accessRestrictions,
+        eventNotifier);
   }
 
-  public AuthorizationServiceTypeNode(UaNodeContext context, NodeId nodeId,
-      QualifiedName browseName, LocalizedText displayName, LocalizedText description,
-      UInteger writeMask, UInteger userWriteMask, RolePermissionType[] rolePermissions,
-      RolePermissionType[] userRolePermissions, AccessRestrictionType accessRestrictions) {
-    super(context, nodeId, browseName, displayName, description, writeMask, userWriteMask,rolePermissions, userRolePermissions, accessRestrictions);
+  public AuthorizationServiceTypeNode(
+      UaNodeContext context,
+      NodeId nodeId,
+      QualifiedName browseName,
+      LocalizedText displayName,
+      LocalizedText description,
+      UInteger writeMask,
+      UInteger userWriteMask,
+      RolePermissionType[] rolePermissions,
+      RolePermissionType[] userRolePermissions,
+      AccessRestrictionType accessRestrictions) {
+    super(
+        context,
+        nodeId,
+        browseName,
+        displayName,
+        description,
+        writeMask,
+        userWriteMask,
+        rolePermissions,
+        userRolePermissions,
+        accessRestrictions);
   }
 
   @Override
@@ -52,7 +88,8 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode implements 
 
   @Override
   public PropertyTypeNode getServiceCertificateNode() {
-    Optional<VariableNode> propertyNode = getPropertyNode(AuthorizationServiceType.SERVICE_CERTIFICATE);
+    Optional<VariableNode> propertyNode =
+        getPropertyNode(AuthorizationServiceType.SERVICE_CERTIFICATE);
     return (PropertyTypeNode) propertyNode.orElse(null);
   }
 
@@ -68,7 +105,8 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode implements 
 
   @Override
   public PropertyTypeNode getUserTokenPoliciesNode() {
-    Optional<VariableNode> propertyNode = getPropertyNode(AuthorizationServiceType.USER_TOKEN_POLICIES);
+    Optional<VariableNode> propertyNode =
+        getPropertyNode(AuthorizationServiceType.USER_TOKEN_POLICIES);
     return (PropertyTypeNode) propertyNode.orElse(null);
   }
 
@@ -84,13 +122,23 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode implements 
 
   @Override
   public UaMethodNode getGetServiceDescriptionMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "GetServiceDescription", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "GetServiceDescription",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getRequestAccessTokenMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "RequestAccessToken", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "RequestAccessToken",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 }

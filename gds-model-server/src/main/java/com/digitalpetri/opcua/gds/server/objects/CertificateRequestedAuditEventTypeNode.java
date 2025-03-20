@@ -1,6 +1,5 @@
 package com.digitalpetri.opcua.gds.server.objects;
 
-import java.lang.Override;
 import java.util.Optional;
 import org.eclipse.milo.opcua.sdk.core.nodes.VariableNode;
 import org.eclipse.milo.opcua.sdk.server.model.objects.AuditUpdateMethodEventTypeNode;

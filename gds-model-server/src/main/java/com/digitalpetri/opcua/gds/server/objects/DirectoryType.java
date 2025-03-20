@@ -20,7 +20,8 @@ import org.eclipse.milo.opcua.stack.core.types.structured.ServerOnNetwork;
 import org.eclipse.milo.opcua.stack.core.util.Lazy;
 
 /**
- * @see <a href="https://reference.opcfoundation.org/GDS/docs/6.6.3">https://reference.opcfoundation.org/GDS/docs/6.6.3</a>
+ * @see <a
+ *     href="https://reference.opcfoundation.org/GDS/docs/6.6.3">https://reference.opcfoundation.org/GDS/docs/6.6.3</a>
  */
 public interface DirectoryType extends FolderType {
   FolderType getApplicationsNode();
@@ -50,37 +51,56 @@ public interface DirectoryType extends FolderType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationUri", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationUri",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("Applications", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "Applications",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       String applicationUri = (String) inputValues[0].getValue();
       Out<ApplicationRecordDataType[]> applications = new Out<>();
       invoke(context, applicationUri, applications);
-      return new Variant[]{new Variant(applications.get())};
+      return new Variant[] {new Variant(applications.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        String applicationUri, Out<ApplicationRecordDataType[]> applications) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        String applicationUri,
+        Out<ApplicationRecordDataType[]> applications)
+        throws UaException;
   }
 
   abstract class RegisterApplicationMethod extends AbstractMethodInvocationHandler {
@@ -94,37 +114,54 @@ public interface DirectoryType extends FolderType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("Application", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "Application",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       ApplicationRecordDataType application = (ApplicationRecordDataType) inputValues[0].getValue();
       Out<NodeId> applicationId = new Out<>();
       invoke(context, application, applicationId);
-      return new Variant[]{new Variant(applicationId.get())};
+      return new Variant[] {new Variant(applicationId.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        ApplicationRecordDataType application, Out<NodeId> applicationId) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context, ApplicationRecordDataType application, Out<NodeId> applicationId)
+        throws UaException;
   }
 
   abstract class UpdateApplicationMethod extends AbstractMethodInvocationHandler {
@@ -136,30 +173,38 @@ public interface DirectoryType extends FolderType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("Application", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "Application",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-      return new Argument[]{};
+      return new Argument[] {};
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       ApplicationRecordDataType application = (ApplicationRecordDataType) inputValues[0].getValue();
       invoke(context, application);
-      return new Variant[]{};
+      return new Variant[] {};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        ApplicationRecordDataType application) throws UaException;
+    protected abstract void invoke(InvocationContext context, ApplicationRecordDataType application)
+        throws UaException;
   }
 
   abstract class UnregisterApplicationMethod extends AbstractMethodInvocationHandler {
@@ -171,30 +216,38 @@ public interface DirectoryType extends FolderType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-      return new Argument[]{};
+      return new Argument[] {};
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       invoke(context, applicationId);
-      return new Variant[]{};
+      return new Variant[] {};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId) throws UaException;
+    protected abstract void invoke(InvocationContext context, NodeId applicationId)
+        throws UaException;
   }
 
   abstract class GetApplicationMethod extends AbstractMethodInvocationHandler {
@@ -208,37 +261,54 @@ public interface DirectoryType extends FolderType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("Application", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "Application",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       Out<ApplicationRecordDataType> application = new Out<>();
       invoke(context, applicationId, application);
-      return new Variant[]{new Variant(application.get())};
+      return new Variant[] {new Variant(application.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, Out<ApplicationRecordDataType> application) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context, NodeId applicationId, Out<ApplicationRecordDataType> application)
+        throws UaException;
   }
 
   abstract class QueryApplicationsMethod extends AbstractMethodInvocationHandler {
@@ -252,37 +322,109 @@ public interface DirectoryType extends FolderType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("StartingRecordId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("MaxRecordsToReturn", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ApplicationName", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ApplicationUri", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ApplicationType", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ProductUri", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("Capabilities", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "StartingRecordId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "MaxRecordsToReturn",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ApplicationName",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ApplicationUri",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ApplicationType",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ProductUri",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "Capabilities",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("LastCounterResetTime", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=294").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("NextRecordId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("Applications", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=308").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "LastCounterResetTime",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=294")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "NextRecordId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "Applications",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=308")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       UInteger startingRecordId = (UInteger) inputValues[0].getValue();
       UInteger maxRecordsToReturn = (UInteger) inputValues[1].getValue();
       String applicationName = (String) inputValues[2].getValue();
@@ -293,15 +435,38 @@ public interface DirectoryType extends FolderType {
       Out<DateTime> lastCounterResetTime = new Out<>();
       Out<UInteger> nextRecordId = new Out<>();
       Out<ApplicationDescription[]> applications = new Out<>();
-      invoke(context, startingRecordId, maxRecordsToReturn, applicationName, applicationUri, applicationType, productUri, capabilities, lastCounterResetTime, nextRecordId, applications);
-      return new Variant[]{new Variant(lastCounterResetTime.get()), new Variant(nextRecordId.get()), new Variant(applications.get())};
+      invoke(
+          context,
+          startingRecordId,
+          maxRecordsToReturn,
+          applicationName,
+          applicationUri,
+          applicationType,
+          productUri,
+          capabilities,
+          lastCounterResetTime,
+          nextRecordId,
+          applications);
+      return new Variant[] {
+        new Variant(lastCounterResetTime.get()),
+        new Variant(nextRecordId.get()),
+        new Variant(applications.get())
+      };
     }
 
-    protected abstract void invoke(InvocationContext context,
-        UInteger startingRecordId, UInteger maxRecordsToReturn, String applicationName,
-        String applicationUri, UInteger applicationType, String productUri, String[] capabilities,
-        Out<DateTime> lastCounterResetTime, Out<UInteger> nextRecordId,
-        Out<ApplicationDescription[]> applications) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        UInteger startingRecordId,
+        UInteger maxRecordsToReturn,
+        String applicationName,
+        String applicationUri,
+        UInteger applicationType,
+        String productUri,
+        String[] capabilities,
+        Out<DateTime> lastCounterResetTime,
+        Out<UInteger> nextRecordId,
+        Out<ApplicationDescription[]> applications)
+        throws UaException;
   }
 
   abstract class QueryServersMethod extends AbstractMethodInvocationHandler {
@@ -315,35 +480,93 @@ public interface DirectoryType extends FolderType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("StartingRecordId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("MaxRecordsToReturn", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ApplicationName", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ApplicationUri", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ProductUri", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ServerCapabilities", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "StartingRecordId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "MaxRecordsToReturn",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=7")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ApplicationName",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ApplicationUri",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ProductUri",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ServerCapabilities",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("LastCounterResetTime", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=294").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("Servers", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12189").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "LastCounterResetTime",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=294")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "Servers",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12189")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       UInteger startingRecordId = (UInteger) inputValues[0].getValue();
       UInteger maxRecordsToReturn = (UInteger) inputValues[1].getValue();
       String applicationName = (String) inputValues[2].getValue();
@@ -352,13 +575,29 @@ public interface DirectoryType extends FolderType {
       String[] serverCapabilities = (String[]) inputValues[5].getValue();
       Out<DateTime> lastCounterResetTime = new Out<>();
       Out<ServerOnNetwork[]> servers = new Out<>();
-      invoke(context, startingRecordId, maxRecordsToReturn, applicationName, applicationUri, productUri, serverCapabilities, lastCounterResetTime, servers);
-      return new Variant[]{new Variant(lastCounterResetTime.get()), new Variant(servers.get())};
+      invoke(
+          context,
+          startingRecordId,
+          maxRecordsToReturn,
+          applicationName,
+          applicationUri,
+          productUri,
+          serverCapabilities,
+          lastCounterResetTime,
+          servers);
+      return new Variant[] {new Variant(lastCounterResetTime.get()), new Variant(servers.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        UInteger startingRecordId, UInteger maxRecordsToReturn, String applicationName,
-        String applicationUri, String productUri, String[] serverCapabilities,
-        Out<DateTime> lastCounterResetTime, Out<ServerOnNetwork[]> servers) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        UInteger startingRecordId,
+        UInteger maxRecordsToReturn,
+        String applicationName,
+        String applicationUri,
+        String productUri,
+        String[] serverCapabilities,
+        Out<DateTime> lastCounterResetTime,
+        Out<ServerOnNetwork[]> servers)
+        throws UaException;
   }
 }

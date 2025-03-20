@@ -22,13 +22,34 @@ import org.eclipse.milo.opcua.stack.core.types.enumerated.NodeClass;
 import org.eclipse.milo.opcua.stack.core.types.structured.AccessRestrictionType;
 import org.eclipse.milo.opcua.stack.core.types.structured.RolePermissionType;
 
-public class CertificateDeliveredAuditEventTypeNode extends AuditUpdateMethodEventTypeNode implements CertificateDeliveredAuditEventType {
-  public CertificateDeliveredAuditEventTypeNode(OpcUaClient client, NodeId nodeId,
-      NodeClass nodeClass, QualifiedName browseName, LocalizedText displayName,
-      LocalizedText description, UInteger writeMask, UInteger userWriteMask,
-      RolePermissionType[] rolePermissions, RolePermissionType[] userRolePermissions,
-      AccessRestrictionType accessRestrictions, UByte eventNotifier) {
-    super(client, nodeId, nodeClass, browseName, displayName, description, writeMask, userWriteMask,rolePermissions, userRolePermissions, accessRestrictions, eventNotifier);
+public class CertificateDeliveredAuditEventTypeNode extends AuditUpdateMethodEventTypeNode
+    implements CertificateDeliveredAuditEventType {
+  public CertificateDeliveredAuditEventTypeNode(
+      OpcUaClient client,
+      NodeId nodeId,
+      NodeClass nodeClass,
+      QualifiedName browseName,
+      LocalizedText displayName,
+      LocalizedText description,
+      UInteger writeMask,
+      UInteger userWriteMask,
+      RolePermissionType[] rolePermissions,
+      RolePermissionType[] userRolePermissions,
+      AccessRestrictionType accessRestrictions,
+      UByte eventNotifier) {
+    super(
+        client,
+        nodeId,
+        nodeClass,
+        browseName,
+        displayName,
+        description,
+        writeMask,
+        userWriteMask,
+        rolePermissions,
+        userRolePermissions,
+        accessRestrictions,
+        eventNotifier);
   }
 
   @Override
@@ -72,7 +93,7 @@ public class CertificateDeliveredAuditEventTypeNode extends AuditUpdateMethodEve
   public CompletableFuture<StatusCode> writeCertificateGroupAsync(NodeId certificateGroup) {
     DataValue value = DataValue.valueOnly(new Variant(certificateGroup));
     return getCertificateGroupNodeAsync()
-            .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
+        .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
   }
 
   @Override
@@ -86,12 +107,12 @@ public class CertificateDeliveredAuditEventTypeNode extends AuditUpdateMethodEve
 
   @Override
   public CompletableFuture<? extends PropertyTypeNode> getCertificateGroupNodeAsync() {
-    CompletableFuture<UaNode> future = getMemberNodeAsync(
+    CompletableFuture<UaNode> future =
+        getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "CertificateGroup",
             ExpandedNodeId.parse("ns=0;i=46"),
-            false
-        );
+            false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 
@@ -136,7 +157,7 @@ public class CertificateDeliveredAuditEventTypeNode extends AuditUpdateMethodEve
   public CompletableFuture<StatusCode> writeCertificateTypeAsync(NodeId certificateType) {
     DataValue value = DataValue.valueOnly(new Variant(certificateType));
     return getCertificateTypeNodeAsync()
-            .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
+        .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
   }
 
   @Override
@@ -150,12 +171,12 @@ public class CertificateDeliveredAuditEventTypeNode extends AuditUpdateMethodEve
 
   @Override
   public CompletableFuture<? extends PropertyTypeNode> getCertificateTypeNodeAsync() {
-    CompletableFuture<UaNode> future = getMemberNodeAsync(
+    CompletableFuture<UaNode> future =
+        getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "CertificateType",
             ExpandedNodeId.parse("ns=0;i=46"),
-            false
-        );
+            false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 }

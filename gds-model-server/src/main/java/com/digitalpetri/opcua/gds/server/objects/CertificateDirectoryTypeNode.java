@@ -15,79 +15,165 @@ import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
 import org.eclipse.milo.opcua.stack.core.types.structured.AccessRestrictionType;
 import org.eclipse.milo.opcua.stack.core.types.structured.RolePermissionType;
 
-public class CertificateDirectoryTypeNode extends DirectoryTypeNode implements CertificateDirectoryType {
-  public CertificateDirectoryTypeNode(UaNodeContext context, NodeId nodeId,
-      QualifiedName browseName, LocalizedText displayName, LocalizedText description,
-      UInteger writeMask, UInteger userWriteMask, RolePermissionType[] rolePermissions,
-      RolePermissionType[] userRolePermissions, AccessRestrictionType accessRestrictions,
+public class CertificateDirectoryTypeNode extends DirectoryTypeNode
+    implements CertificateDirectoryType {
+  public CertificateDirectoryTypeNode(
+      UaNodeContext context,
+      NodeId nodeId,
+      QualifiedName browseName,
+      LocalizedText displayName,
+      LocalizedText description,
+      UInteger writeMask,
+      UInteger userWriteMask,
+      RolePermissionType[] rolePermissions,
+      RolePermissionType[] userRolePermissions,
+      AccessRestrictionType accessRestrictions,
       UByte eventNotifier) {
-    super(context, nodeId, browseName, displayName, description, writeMask, userWriteMask,rolePermissions, userRolePermissions, accessRestrictions, eventNotifier);
+    super(
+        context,
+        nodeId,
+        browseName,
+        displayName,
+        description,
+        writeMask,
+        userWriteMask,
+        rolePermissions,
+        userRolePermissions,
+        accessRestrictions,
+        eventNotifier);
   }
 
-  public CertificateDirectoryTypeNode(UaNodeContext context, NodeId nodeId,
-      QualifiedName browseName, LocalizedText displayName, LocalizedText description,
-      UInteger writeMask, UInteger userWriteMask, RolePermissionType[] rolePermissions,
-      RolePermissionType[] userRolePermissions, AccessRestrictionType accessRestrictions) {
-    super(context, nodeId, browseName, displayName, description, writeMask, userWriteMask,rolePermissions, userRolePermissions, accessRestrictions);
+  public CertificateDirectoryTypeNode(
+      UaNodeContext context,
+      NodeId nodeId,
+      QualifiedName browseName,
+      LocalizedText displayName,
+      LocalizedText description,
+      UInteger writeMask,
+      UInteger userWriteMask,
+      RolePermissionType[] rolePermissions,
+      RolePermissionType[] userRolePermissions,
+      AccessRestrictionType accessRestrictions) {
+    super(
+        context,
+        nodeId,
+        browseName,
+        displayName,
+        description,
+        writeMask,
+        userWriteMask,
+        rolePermissions,
+        userRolePermissions,
+        accessRestrictions);
   }
 
   @Override
   public UaMethodNode getStartSigningRequestMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "StartSigningRequest", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "StartSigningRequest",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getStartNewKeyPairRequestMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "StartNewKeyPairRequest", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "StartNewKeyPairRequest",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getFinishRequestMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "FinishRequest", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "FinishRequest",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getRevokeCertificateMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "RevokeCertificate", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "RevokeCertificate",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getGetCertificateGroupsMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "GetCertificateGroups", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "GetCertificateGroups",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getGetCertificatesMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "GetCertificates", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "GetCertificates",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getGetTrustListMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "GetTrustList", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "GetTrustList",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getGetCertificateStatusMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "GetCertificateStatus", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "GetCertificateStatus",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public UaMethodNode getCheckRevocationStatusMethodNode() {
-    Optional<UaNode> methodNode = findNode("http://opcfoundation.org/UA/GDS/", "CheckRevocationStatus", node -> node instanceof UaMethodNode, Reference.HAS_COMPONENT_PREDICATE);
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "CheckRevocationStatus",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);
   }
 
   @Override
   public CertificateGroupFolderTypeNode getCertificateGroupsNode() {
-    Optional<UaNode> node = findNode("http://opcfoundation.org/UA/GDS/", "CertificateGroups", n -> n instanceof UaObjectNode, Reference.ORGANIZES_PREDICATE);
+    Optional<UaNode> node =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "CertificateGroups",
+            n -> n instanceof UaObjectNode,
+            Reference.ORGANIZES_PREDICATE);
     return (CertificateGroupFolderTypeNode) node.orElse(null);
   }
 }

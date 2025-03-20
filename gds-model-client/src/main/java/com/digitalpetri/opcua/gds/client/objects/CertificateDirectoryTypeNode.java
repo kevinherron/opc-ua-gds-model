@@ -1,7 +1,5 @@
 package com.digitalpetri.opcua.gds.client.objects;
 
-import java.lang.InterruptedException;
-import java.lang.Override;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;

@@ -22,13 +22,34 @@ import org.eclipse.milo.opcua.stack.core.types.enumerated.NodeClass;
 import org.eclipse.milo.opcua.stack.core.types.structured.AccessRestrictionType;
 import org.eclipse.milo.opcua.stack.core.types.structured.RolePermissionType;
 
-public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode implements KeyCredentialServiceType {
-  public KeyCredentialServiceTypeNode(OpcUaClient client, NodeId nodeId, NodeClass nodeClass,
-      QualifiedName browseName, LocalizedText displayName, LocalizedText description,
-      UInteger writeMask, UInteger userWriteMask, RolePermissionType[] rolePermissions,
-      RolePermissionType[] userRolePermissions, AccessRestrictionType accessRestrictions,
+public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
+    implements KeyCredentialServiceType {
+  public KeyCredentialServiceTypeNode(
+      OpcUaClient client,
+      NodeId nodeId,
+      NodeClass nodeClass,
+      QualifiedName browseName,
+      LocalizedText displayName,
+      LocalizedText description,
+      UInteger writeMask,
+      UInteger userWriteMask,
+      RolePermissionType[] rolePermissions,
+      RolePermissionType[] userRolePermissions,
+      AccessRestrictionType accessRestrictions,
       UByte eventNotifier) {
-    super(client, nodeId, nodeClass, browseName, displayName, description, writeMask, userWriteMask,rolePermissions, userRolePermissions, accessRestrictions, eventNotifier);
+    super(
+        client,
+        nodeId,
+        nodeClass,
+        browseName,
+        displayName,
+        description,
+        writeMask,
+        userWriteMask,
+        rolePermissions,
+        userRolePermissions,
+        accessRestrictions,
+        eventNotifier);
   }
 
   @Override
@@ -72,7 +93,7 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode implements 
   public CompletableFuture<StatusCode> writeResourceUriAsync(String resourceUri) {
     DataValue value = DataValue.valueOnly(new Variant(resourceUri));
     return getResourceUriNodeAsync()
-            .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
+        .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
   }
 
   @Override
@@ -86,12 +107,12 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode implements 
 
   @Override
   public CompletableFuture<? extends PropertyTypeNode> getResourceUriNodeAsync() {
-    CompletableFuture<UaNode> future = getMemberNodeAsync(
+    CompletableFuture<UaNode> future =
+        getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "ResourceUri",
             ExpandedNodeId.parse("ns=0;i=46"),
-            false
-        );
+            false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 
@@ -136,7 +157,7 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode implements 
   public CompletableFuture<StatusCode> writeProfileUrisAsync(String[] profileUris) {
     DataValue value = DataValue.valueOnly(new Variant(profileUris));
     return getProfileUrisNodeAsync()
-            .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
+        .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
   }
 
   @Override
@@ -150,12 +171,12 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode implements 
 
   @Override
   public CompletableFuture<? extends PropertyTypeNode> getProfileUrisNodeAsync() {
-    CompletableFuture<UaNode> future = getMemberNodeAsync(
+    CompletableFuture<UaNode> future =
+        getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "ProfileUris",
             ExpandedNodeId.parse("ns=0;i=46"),
-            false
-        );
+            false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 
@@ -200,7 +221,7 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode implements 
   public CompletableFuture<StatusCode> writeSecurityPolicyUrisAsync(String[] securityPolicyUris) {
     DataValue value = DataValue.valueOnly(new Variant(securityPolicyUris));
     return getSecurityPolicyUrisNodeAsync()
-            .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
+        .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
   }
 
   @Override
@@ -214,12 +235,12 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode implements 
 
   @Override
   public CompletableFuture<? extends PropertyTypeNode> getSecurityPolicyUrisNodeAsync() {
-    CompletableFuture<UaNode> future = getMemberNodeAsync(
+    CompletableFuture<UaNode> future =
+        getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "SecurityPolicyUris",
             ExpandedNodeId.parse("ns=0;i=46"),
-            false
-        );
+            false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 }

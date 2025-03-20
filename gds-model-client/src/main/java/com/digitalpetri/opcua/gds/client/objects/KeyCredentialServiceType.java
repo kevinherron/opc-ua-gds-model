@@ -1,6 +1,5 @@
 package com.digitalpetri.opcua.gds.client.objects;
 
-import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.eclipse.milo.opcua.sdk.client.model.objects.BaseObjectType;
 import org.eclipse.milo.opcua.sdk.client.model.variables.PropertyType;

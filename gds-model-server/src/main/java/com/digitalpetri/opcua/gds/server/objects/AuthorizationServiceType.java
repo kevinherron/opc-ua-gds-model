@@ -1,7 +1,5 @@
 package com.digitalpetri.opcua.gds.server.objects;
 
-import java.lang.Override;
-import java.lang.String;
 import org.eclipse.milo.opcua.sdk.core.QualifiedProperty;
 import org.eclipse.milo.opcua.sdk.core.nodes.MethodNode;
 import org.eclipse.milo.opcua.sdk.server.methods.AbstractMethodInvocationHandler;

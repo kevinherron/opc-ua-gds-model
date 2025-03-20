@@ -19,7 +19,8 @@ import org.eclipse.milo.opcua.stack.core.types.structured.Argument;
 import org.eclipse.milo.opcua.stack.core.util.Lazy;
 
 /**
- * @see <a href="https://reference.opcfoundation.org/GDS/docs/7.9.2">https://reference.opcfoundation.org/GDS/docs/7.9.2</a>
+ * @see <a
+ *     href="https://reference.opcfoundation.org/GDS/docs/7.9.2">https://reference.opcfoundation.org/GDS/docs/7.9.2</a>
  */
 public interface CertificateDirectoryType extends DirectoryType {
   MethodNode getStartSigningRequestMethodNode();
@@ -53,44 +54,92 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateGroupId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateTypeId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateRequest", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateGroupId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateTypeId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateRequest",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("RequestId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "RequestId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
       NodeId certificateTypeId = (NodeId) inputValues[2].getValue();
       ByteString certificateRequest = (ByteString) inputValues[3].getValue();
       Out<NodeId> requestId = new Out<>();
-      invoke(context, applicationId, certificateGroupId, certificateTypeId, certificateRequest, requestId);
-      return new Variant[]{new Variant(requestId.get())};
+      invoke(
+          context,
+          applicationId,
+          certificateGroupId,
+          certificateTypeId,
+          certificateRequest,
+          requestId);
+      return new Variant[] {new Variant(requestId.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, NodeId certificateGroupId, NodeId certificateTypeId,
-        ByteString certificateRequest, Out<NodeId> requestId) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        NodeId applicationId,
+        NodeId certificateGroupId,
+        NodeId certificateTypeId,
+        ByteString certificateRequest,
+        Out<NodeId> requestId)
+        throws UaException;
   }
 
   abstract class StartNewKeyPairRequestMethod extends AbstractMethodInvocationHandler {
@@ -104,35 +153,93 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateGroupId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateTypeId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("SubjectName", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("DomainNames", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", "")),
-          new Argument("PrivateKeyFormat", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("PrivateKeyPassword", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateGroupId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateTypeId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "SubjectName",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "DomainNames",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", "")),
+              new Argument(
+                  "PrivateKeyFormat",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "PrivateKeyPassword",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("RequestId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "RequestId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
       NodeId certificateTypeId = (NodeId) inputValues[2].getValue();
@@ -141,14 +248,30 @@ public interface CertificateDirectoryType extends DirectoryType {
       String privateKeyFormat = (String) inputValues[5].getValue();
       String privateKeyPassword = (String) inputValues[6].getValue();
       Out<NodeId> requestId = new Out<>();
-      invoke(context, applicationId, certificateGroupId, certificateTypeId, subjectName, domainNames, privateKeyFormat, privateKeyPassword, requestId);
-      return new Variant[]{new Variant(requestId.get())};
+      invoke(
+          context,
+          applicationId,
+          certificateGroupId,
+          certificateTypeId,
+          subjectName,
+          domainNames,
+          privateKeyFormat,
+          privateKeyPassword,
+          requestId);
+      return new Variant[] {new Variant(requestId.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, NodeId certificateGroupId, NodeId certificateTypeId,
-        String subjectName, String[] domainNames, String privateKeyFormat,
-        String privateKeyPassword, Out<NodeId> requestId) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        NodeId applicationId,
+        NodeId certificateGroupId,
+        NodeId certificateTypeId,
+        String subjectName,
+        String[] domainNames,
+        String privateKeyFormat,
+        String privateKeyPassword,
+        Out<NodeId> requestId)
+        throws UaException;
   }
 
   abstract class FinishRequestMethod extends AbstractMethodInvocationHandler {
@@ -162,44 +285,90 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("RequestId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "RequestId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("Certificate", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("PrivateKey", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("IssuerCertificates", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "Certificate",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "PrivateKey",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "IssuerCertificates",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId requestId = (NodeId) inputValues[1].getValue();
       Out<ByteString> certificate = new Out<>();
       Out<ByteString> privateKey = new Out<>();
       Out<ByteString[]> issuerCertificates = new Out<>();
       invoke(context, applicationId, requestId, certificate, privateKey, issuerCertificates);
-      return new Variant[]{new Variant(certificate.get()), new Variant(privateKey.get()), new Variant(issuerCertificates.get())};
+      return new Variant[] {
+        new Variant(certificate.get()),
+        new Variant(privateKey.get()),
+        new Variant(issuerCertificates.get())
+      };
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, NodeId requestId, Out<ByteString> certificate,
-        Out<ByteString> privateKey, Out<ByteString[]> issuerCertificates) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        NodeId applicationId,
+        NodeId requestId,
+        Out<ByteString> certificate,
+        Out<ByteString> privateKey,
+        Out<ByteString[]> issuerCertificates)
+        throws UaException;
   }
 
   abstract class RevokeCertificateMethod extends AbstractMethodInvocationHandler {
@@ -211,32 +380,47 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("Certificate", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "Certificate",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-      return new Argument[]{};
+      return new Argument[] {};
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       ByteString certificate = (ByteString) inputValues[1].getValue();
       invoke(context, applicationId, certificate);
-      return new Variant[]{};
+      return new Variant[] {};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, ByteString certificate) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context, NodeId applicationId, ByteString certificate) throws UaException;
   }
 
   abstract class GetCertificateGroupsMethod extends AbstractMethodInvocationHandler {
@@ -250,37 +434,54 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("CertificateGroupIds", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "CertificateGroupIds",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       Out<NodeId[]> certificateGroupIds = new Out<>();
       invoke(context, applicationId, certificateGroupIds);
-      return new Variant[]{new Variant(certificateGroupIds.get())};
+      return new Variant[] {new Variant(certificateGroupIds.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, Out<NodeId[]> certificateGroupIds) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context, NodeId applicationId, Out<NodeId[]> certificateGroupIds)
+        throws UaException;
   }
 
   abstract class GetCertificatesMethod extends AbstractMethodInvocationHandler {
@@ -294,42 +495,76 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateGroupId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateGroupId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("CertificateTypeIds", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", "")),
-          new Argument("Certificates", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15").toNodeId(namespaceTable).orElseThrow(), 1, new UInteger[]{UInteger.valueOf(0)}, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "CertificateTypeIds",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", "")),
+              new Argument(
+                  "Certificates",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  1,
+                  new UInteger[] {UInteger.valueOf(0)},
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
       Out<NodeId[]> certificateTypeIds = new Out<>();
       Out<ByteString[]> certificates = new Out<>();
       invoke(context, applicationId, certificateGroupId, certificateTypeIds, certificates);
-      return new Variant[]{new Variant(certificateTypeIds.get()), new Variant(certificates.get())};
+      return new Variant[] {new Variant(certificateTypeIds.get()), new Variant(certificates.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, NodeId certificateGroupId, Out<NodeId[]> certificateTypeIds,
-        Out<ByteString[]> certificates) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        NodeId applicationId,
+        NodeId certificateGroupId,
+        Out<NodeId[]> certificateTypeIds,
+        Out<ByteString[]> certificates)
+        throws UaException;
   }
 
   abstract class GetTrustListMethod extends AbstractMethodInvocationHandler {
@@ -343,40 +578,66 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateGroupId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateGroupId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("TrustListId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "TrustListId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
       Out<NodeId> trustListId = new Out<>();
       invoke(context, applicationId, certificateGroupId, trustListId);
-      return new Variant[]{new Variant(trustListId.get())};
+      return new Variant[] {new Variant(trustListId.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, NodeId certificateGroupId, Out<NodeId> trustListId) throws
-        UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        NodeId applicationId,
+        NodeId certificateGroupId,
+        Out<NodeId> trustListId)
+        throws UaException;
   }
 
   abstract class GetCertificateStatusMethod extends AbstractMethodInvocationHandler {
@@ -390,42 +651,76 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("ApplicationId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateGroupId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("CertificateTypeId", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "ApplicationId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateGroupId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "CertificateTypeId",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=17")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("UpdateRequired", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=1").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "UpdateRequired",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=1")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
       NodeId certificateTypeId = (NodeId) inputValues[2].getValue();
       Out<Boolean> updateRequired = new Out<>();
       invoke(context, applicationId, certificateGroupId, certificateTypeId, updateRequired);
-      return new Variant[]{new Variant(updateRequired.get())};
+      return new Variant[] {new Variant(updateRequired.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        NodeId applicationId, NodeId certificateGroupId, NodeId certificateTypeId,
-        Out<Boolean> updateRequired) throws UaException;
+    protected abstract void invoke(
+        InvocationContext context,
+        NodeId applicationId,
+        NodeId certificateGroupId,
+        NodeId certificateTypeId,
+        Out<Boolean> updateRequired)
+        throws UaException;
   }
 
   abstract class CheckRevocationStatusMethod extends AbstractMethodInvocationHandler {
@@ -439,39 +734,65 @@ public interface CertificateDirectoryType extends DirectoryType {
 
     @Override
     public Argument[] getInputArguments() {
-          return inputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return inputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("Certificate", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "Certificate",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=15")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
     public Argument[] getOutputArguments() {
-          return outputArguments.get(() -> {
-              NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
+      return outputArguments.get(
+          () -> {
+            NamespaceTable namespaceTable = getNode().getNodeContext().getNamespaceTable();
 
-              return new Argument[]{
-          new Argument("CertificateStatus", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=19").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", "")),
-          new Argument("ValidityTime", ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=294").toNodeId(namespaceTable).orElseThrow(), -1, null, new LocalizedText("", ""))
-          };
+            return new Argument[] {
+              new Argument(
+                  "CertificateStatus",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=19")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", "")),
+              new Argument(
+                  "ValidityTime",
+                  ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=294")
+                      .toNodeId(namespaceTable)
+                      .orElseThrow(),
+                  -1,
+                  null,
+                  new LocalizedText("", ""))
+            };
           });
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context,
-        Variant[] inputValues) throws UaException {
+    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+        throws UaException {
       ByteString certificate = (ByteString) inputValues[0].getValue();
       Out<StatusCode> certificateStatus = new Out<>();
       Out<DateTime> validityTime = new Out<>();
       invoke(context, certificate, certificateStatus, validityTime);
-      return new Variant[]{new Variant(certificateStatus.get()), new Variant(validityTime.get())};
+      return new Variant[] {new Variant(certificateStatus.get()), new Variant(validityTime.get())};
     }
 
-    protected abstract void invoke(InvocationContext context,
-        ByteString certificate, Out<StatusCode> certificateStatus, Out<DateTime> validityTime)
+    protected abstract void invoke(
+        InvocationContext context,
+        ByteString certificate,
+        Out<StatusCode> certificateStatus,
+        Out<DateTime> validityTime)
         throws UaException;
   }
 }
