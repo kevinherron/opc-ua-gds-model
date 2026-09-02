@@ -115,7 +115,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
@@ -133,7 +134,7 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         NodeId applicationId,
         NodeId certificateGroupId,
         NodeId certificateTypeId,
@@ -238,7 +239,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
@@ -262,7 +264,7 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         NodeId applicationId,
         NodeId certificateGroupId,
         NodeId certificateTypeId,
@@ -346,7 +348,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId requestId = (NodeId) inputValues[1].getValue();
@@ -362,7 +365,7 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         NodeId applicationId,
         NodeId requestId,
         Out<ByteString> certificate,
@@ -411,7 +414,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       ByteString certificate = (ByteString) inputValues[1].getValue();
@@ -420,7 +424,10 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context, NodeId applicationId, ByteString certificate) throws UaException;
+        AbstractMethodInvocationHandler.InvocationContext context,
+        NodeId applicationId,
+        ByteString certificate)
+        throws UaException;
   }
 
   abstract class GetCertificateGroupsMethod extends AbstractMethodInvocationHandler {
@@ -471,7 +478,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       Out<NodeId[]> certificateGroupIds = new Out<>();
@@ -480,7 +488,9 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context, NodeId applicationId, Out<NodeId[]> certificateGroupIds)
+        AbstractMethodInvocationHandler.InvocationContext context,
+        NodeId applicationId,
+        Out<NodeId[]> certificateGroupIds)
         throws UaException;
   }
 
@@ -548,7 +558,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
@@ -559,7 +570,7 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         NodeId applicationId,
         NodeId certificateGroupId,
         Out<NodeId[]> certificateTypeIds,
@@ -623,7 +634,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
@@ -633,7 +645,7 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         NodeId applicationId,
         NodeId certificateGroupId,
         Out<NodeId> trustListId)
@@ -704,7 +716,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       NodeId certificateGroupId = (NodeId) inputValues[1].getValue();
@@ -715,7 +728,7 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         NodeId applicationId,
         NodeId certificateGroupId,
         NodeId certificateTypeId,
@@ -779,7 +792,8 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       ByteString certificate = (ByteString) inputValues[0].getValue();
       Out<StatusCode> certificateStatus = new Out<>();
@@ -789,7 +803,7 @@ public interface CertificateDirectoryType extends DirectoryType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         ByteString certificate,
         Out<StatusCode> certificateStatus,
         Out<DateTime> validityTime)

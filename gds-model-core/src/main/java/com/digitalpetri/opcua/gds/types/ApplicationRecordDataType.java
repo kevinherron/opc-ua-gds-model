@@ -22,10 +22,9 @@ import org.jspecify.annotations.Nullable;
 
 /**
  * @see <a
- *     href="https://reference.opcfoundation.org/GDS/docs/6.6.5">https://reference.opcfoundation.org/GDS/docs/6.6.5</a>
+ *     href="https://reference.opcfoundation.org/GDS/docs/6.5.5">https://reference.opcfoundation.org/GDS/docs/6.5.5</a>
  */
 public class ApplicationRecordDataType extends Structure implements UaStructuredType {
-
   public static final ExpandedNodeId TYPE_ID =
       ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/GDS/;i=1");
 
@@ -232,7 +231,6 @@ public class ApplicationRecordDataType extends Structure implements UaStructured
   }
 
   public static final class Codec extends GenericDataTypeCodec<ApplicationRecordDataType> {
-
     @Override
     public Class<ApplicationRecordDataType> getType() {
       return ApplicationRecordDataType.class;

@@ -4,6 +4,6 @@ import org.eclipse.milo.opcua.sdk.client.model.objects.AuditUpdateMethodEventTyp
 
 /**
  * @see <a
- *     href="https://reference.opcfoundation.org/GDS/docs/9.6.7">https://reference.opcfoundation.org/GDS/docs/9.6.7</a>
+ *     href="https://reference.opcfoundation.org/GDS/docs/9.6.11">https://reference.opcfoundation.org/GDS/docs/9.6.11</a>
  */
 public interface AccessTokenIssuedAuditEventType extends AuditUpdateMethodEventType {}

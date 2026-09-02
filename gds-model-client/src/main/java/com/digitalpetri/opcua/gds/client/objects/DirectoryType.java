@@ -6,7 +6,7 @@ import org.eclipse.milo.opcua.stack.core.UaException;
 
 /**
  * @see <a
- *     href="https://reference.opcfoundation.org/GDS/docs/6.6.3">https://reference.opcfoundation.org/GDS/docs/6.6.3</a>
+ *     href="https://reference.opcfoundation.org/GDS/docs/6.5.3">https://reference.opcfoundation.org/GDS/docs/6.5.3</a>
  */
 public interface DirectoryType extends FolderType {
   /**

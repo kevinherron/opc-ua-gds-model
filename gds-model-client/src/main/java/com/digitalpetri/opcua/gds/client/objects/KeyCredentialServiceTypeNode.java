@@ -68,8 +68,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public String readResourceUri() throws UaException {
     try {
       return readResourceUriAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -77,8 +80,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public void writeResourceUri(String value) throws UaException {
     try {
       writeResourceUriAsync(value).get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -100,8 +106,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public PropertyTypeNode getResourceUriNode() throws UaException {
     try {
       return getResourceUriNodeAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -109,10 +118,7 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public CompletableFuture<? extends PropertyTypeNode> getResourceUriNodeAsync() {
     CompletableFuture<UaNode> future =
         getMemberNodeAsync(
-            "http://opcfoundation.org/UA/GDS/",
-            "ResourceUri",
-            ExpandedNodeId.parse("ns=0;i=46"),
-            false);
+            "http://opcfoundation.org/UA/GDS/", "ResourceUri", ExpandedNodeId.parse("i=46"), false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 
@@ -132,8 +138,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public String[] readProfileUris() throws UaException {
     try {
       return readProfileUrisAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -141,8 +150,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public void writeProfileUris(String[] value) throws UaException {
     try {
       writeProfileUrisAsync(value).get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -164,8 +176,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public PropertyTypeNode getProfileUrisNode() throws UaException {
     try {
       return getProfileUrisNodeAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -173,10 +188,7 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public CompletableFuture<? extends PropertyTypeNode> getProfileUrisNodeAsync() {
     CompletableFuture<UaNode> future =
         getMemberNodeAsync(
-            "http://opcfoundation.org/UA/GDS/",
-            "ProfileUris",
-            ExpandedNodeId.parse("ns=0;i=46"),
-            false);
+            "http://opcfoundation.org/UA/GDS/", "ProfileUris", ExpandedNodeId.parse("i=46"), false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 
@@ -196,8 +208,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public String[] readSecurityPolicyUris() throws UaException {
     try {
       return readSecurityPolicyUrisAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -205,8 +220,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public void writeSecurityPolicyUris(String[] value) throws UaException {
     try {
       writeSecurityPolicyUrisAsync(value).get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -228,8 +246,11 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
   public PropertyTypeNode getSecurityPolicyUrisNode() throws UaException {
     try {
       return getSecurityPolicyUrisNodeAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -239,7 +260,7 @@ public class KeyCredentialServiceTypeNode extends BaseObjectTypeNode
         getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "SecurityPolicyUris",
-            ExpandedNodeId.parse("ns=0;i=46"),
+            ExpandedNodeId.parse("i=46"),
             false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }

@@ -71,8 +71,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public String readServiceUri() throws UaException {
     try {
       return readServiceUriAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -80,8 +83,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public void writeServiceUri(String value) throws UaException {
     try {
       writeServiceUriAsync(value).get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -103,8 +109,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public PropertyTypeNode getServiceUriNode() throws UaException {
     try {
       return getServiceUriNodeAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -112,10 +121,7 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public CompletableFuture<? extends PropertyTypeNode> getServiceUriNodeAsync() {
     CompletableFuture<UaNode> future =
         getMemberNodeAsync(
-            "http://opcfoundation.org/UA/GDS/",
-            "ServiceUri",
-            ExpandedNodeId.parse("ns=0;i=46"),
-            false);
+            "http://opcfoundation.org/UA/GDS/", "ServiceUri", ExpandedNodeId.parse("i=46"), false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
 
@@ -135,8 +141,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public ByteString readServiceCertificate() throws UaException {
     try {
       return readServiceCertificateAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -144,8 +153,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public void writeServiceCertificate(ByteString value) throws UaException {
     try {
       writeServiceCertificateAsync(value).get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -167,8 +179,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public PropertyTypeNode getServiceCertificateNode() throws UaException {
     try {
       return getServiceCertificateNodeAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -178,7 +193,7 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
         getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "ServiceCertificate",
-            ExpandedNodeId.parse("ns=0;i=46"),
+            ExpandedNodeId.parse("i=46"),
             false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }
@@ -201,8 +216,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public UserTokenPolicy[] readUserTokenPolicies() throws UaException {
     try {
       return readUserTokenPoliciesAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -210,8 +228,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public void writeUserTokenPolicies(UserTokenPolicy[] value) throws UaException {
     try {
       writeUserTokenPoliciesAsync(value).get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError, e));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -236,8 +257,11 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   public PropertyTypeNode getUserTokenPoliciesNode() throws UaException {
     try {
       return getUserTokenPoliciesNodeAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -247,7 +271,80 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
         getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "UserTokenPolicies",
-            ExpandedNodeId.parse("ns=0;i=46"),
+            ExpandedNodeId.parse("i=46"),
+            false);
+    return future.thenApply(node -> (PropertyTypeNode) node);
+  }
+
+  @Override
+  public String[] getSupportedRoles() throws UaException {
+    PropertyTypeNode node = getSupportedRolesNode();
+    return (String[]) node.getValue().getValue().getValue();
+  }
+
+  @Override
+  public void setSupportedRoles(String[] value) throws UaException {
+    PropertyTypeNode node = getSupportedRolesNode();
+    node.setValue(new Variant(value));
+  }
+
+  @Override
+  public String[] readSupportedRoles() throws UaException {
+    try {
+      return readSupportedRolesAsync().get();
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
+    }
+  }
+
+  @Override
+  public void writeSupportedRoles(String[] value) throws UaException {
+    try {
+      writeSupportedRolesAsync(value).get();
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
+    }
+  }
+
+  @Override
+  public CompletableFuture<? extends String[]> readSupportedRolesAsync() {
+    return getSupportedRolesNodeAsync()
+        .thenCompose(node -> node.readAttributeAsync(AttributeId.Value))
+        .thenApply(v -> (String[]) v.getValue().getValue());
+  }
+
+  @Override
+  public CompletableFuture<StatusCode> writeSupportedRolesAsync(String[] supportedRoles) {
+    DataValue value = DataValue.valueOnly(new Variant(supportedRoles));
+    return getSupportedRolesNodeAsync()
+        .thenCompose(node -> node.writeAttributeAsync(AttributeId.Value, value));
+  }
+
+  @Override
+  public PropertyTypeNode getSupportedRolesNode() throws UaException {
+    try {
+      return getSupportedRolesNodeAsync().get();
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
+    }
+  }
+
+  @Override
+  public CompletableFuture<? extends PropertyTypeNode> getSupportedRolesNodeAsync() {
+    CompletableFuture<UaNode> future =
+        getMemberNodeAsync(
+            "http://opcfoundation.org/UA/GDS/",
+            "SupportedRoles",
+            ExpandedNodeId.parse("i=46"),
             false);
     return future.thenApply(node -> (PropertyTypeNode) node);
   }

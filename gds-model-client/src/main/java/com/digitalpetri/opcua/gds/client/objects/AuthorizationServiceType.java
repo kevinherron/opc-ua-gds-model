@@ -39,6 +39,14 @@ public interface AuthorizationServiceType extends BaseObjectType {
           1,
           UserTokenPolicy[].class);
 
+  QualifiedProperty<String[]> SUPPORTED_ROLES =
+      new QualifiedProperty<>(
+          "http://opcfoundation.org/UA/GDS/",
+          "SupportedRoles",
+          ExpandedNodeId.parse("nsu=http://opcfoundation.org/UA/;i=12"),
+          1,
+          String[].class);
+
   /**
    * Get the local value of the ServiceUri Node.
    *
@@ -254,4 +262,76 @@ public interface AuthorizationServiceType extends BaseObjectType {
    *     exceptionally if an error occurs creating or getting the Node.
    */
   CompletableFuture<? extends PropertyType> getUserTokenPoliciesNodeAsync();
+
+  /**
+   * Get the local value of the SupportedRoles Node.
+   *
+   * <p>The returned value is the last seen; it is not read live from the server.
+   *
+   * @return the local value of the SupportedRoles Node.
+   * @throws UaException if an error occurs creating or getting the SupportedRoles Node.
+   */
+  String[] getSupportedRoles() throws UaException;
+
+  /**
+   * Set the local value of the SupportedRoles Node.
+   *
+   * <p>The value is only updated locally; it is not written to the server.
+   *
+   * @param value the local value to set for the SupportedRoles Node.
+   * @throws UaException if an error occurs creating or getting the SupportedRoles Node.
+   */
+  void setSupportedRoles(String[] value) throws UaException;
+
+  /**
+   * Read the value of the SupportedRoles Node from the server and update the local value if the
+   * operation succeeds.
+   *
+   * @return the {@link String[]} value read from the server.
+   * @throws UaException if a service- or operation-level error occurs.
+   */
+  String[] readSupportedRoles() throws UaException;
+
+  /**
+   * Write a new value for the SupportedRoles Node to the server and update the local value if the
+   * operation succeeds.
+   *
+   * @param value the {@link String[]} value to write to the server.
+   * @throws UaException if a service- or operation-level error occurs.
+   */
+  void writeSupportedRoles(String[] value) throws UaException;
+
+  /**
+   * An asynchronous implementation of {@link #readSupportedRoles}.
+   *
+   * @return a CompletableFuture that completes successfully with the value or completes
+   *     exceptionally if an operation- or service-level error occurs.
+   */
+  CompletableFuture<? extends String[]> readSupportedRolesAsync();
+
+  /**
+   * An asynchronous implementation of {@link #writeSupportedRoles}.
+   *
+   * @return a CompletableFuture that completes successfully with the operation result or completes
+   *     exceptionally if a service-level error occurs.
+   */
+  CompletableFuture<StatusCode> writeSupportedRolesAsync(String[] value);
+
+  /**
+   * Get the SupportedRoles {@link PropertyType} Node, or {@code null} if it does not exist.
+   *
+   * <p>The Node is created when first accessed and cached for subsequent calls.
+   *
+   * @return the SupportedRoles {@link PropertyType} Node, or {@code null} if it does not exist.
+   * @throws UaException if an error occurs creating or getting the Node.
+   */
+  PropertyType getSupportedRolesNode() throws UaException;
+
+  /**
+   * Asynchronous implementation of {@link #getSupportedRolesNode()}.
+   *
+   * @return a CompletableFuture that completes successfully with the PropertyType Node or completes
+   *     exceptionally if an error occurs creating or getting the Node.
+   */
+  CompletableFuture<? extends PropertyType> getSupportedRolesNodeAsync();
 }

@@ -51,8 +51,11 @@ public class CertificateDirectoryTypeNode extends DirectoryTypeNode
   public CertificateGroupFolderTypeNode getCertificateGroupsNode() throws UaException {
     try {
       return getCertificateGroupsNodeAsync().get();
-    } catch (ExecutionException | InterruptedException e) {
-      throw UaException.extract(e).orElse(new UaException(StatusCodes.Bad_UnexpectedError));
+    } catch (ExecutionException e) {
+      throw new UaException(e.getCause());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
     }
   }
 
@@ -63,7 +66,7 @@ public class CertificateDirectoryTypeNode extends DirectoryTypeNode
         getMemberNodeAsync(
             "http://opcfoundation.org/UA/GDS/",
             "CertificateGroups",
-            ExpandedNodeId.parse("ns=0;i=35"),
+            ExpandedNodeId.parse("i=35"),
             false);
     return future.thenApply(node -> (CertificateGroupFolderTypeNode) node);
   }

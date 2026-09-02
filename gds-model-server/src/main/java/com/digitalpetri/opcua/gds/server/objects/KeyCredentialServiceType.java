@@ -143,7 +143,8 @@ public interface KeyCredentialServiceType extends BaseObjectType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       String applicationUri = (String) inputValues[0].getValue();
       ByteString publicKey = (ByteString) inputValues[1].getValue();
@@ -155,7 +156,7 @@ public interface KeyCredentialServiceType extends BaseObjectType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         String applicationUri,
         ByteString publicKey,
         String securityPolicyUri,
@@ -252,7 +253,8 @@ public interface KeyCredentialServiceType extends BaseObjectType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId requestId = (NodeId) inputValues[0].getValue();
       Boolean cancelRequest = (Boolean) inputValues[1].getValue();
@@ -280,7 +282,7 @@ public interface KeyCredentialServiceType extends BaseObjectType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         NodeId requestId,
         Boolean cancelRequest,
         Out<String> credentialId,
@@ -323,14 +325,16 @@ public interface KeyCredentialServiceType extends BaseObjectType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       String credentialId = (String) inputValues[0].getValue();
       invoke(context, credentialId);
       return new Variant[] {};
     }
 
-    protected abstract void invoke(InvocationContext context, String credentialId)
+    protected abstract void invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, String credentialId)
         throws UaException;
   }
 }

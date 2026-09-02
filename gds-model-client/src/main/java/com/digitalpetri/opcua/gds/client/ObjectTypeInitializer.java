@@ -1,12 +1,14 @@
 package com.digitalpetri.opcua.gds.client;
 
 import com.digitalpetri.opcua.gds.client.objects.AccessTokenIssuedAuditEventTypeNode;
+import com.digitalpetri.opcua.gds.client.objects.AccessTokenRequestedAuditEventTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.ApplicationRegistrationChangedAuditEventTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.AuthorizationServiceTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.AuthorizationServicesFolderTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.CertificateDeliveredAuditEventTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.CertificateDirectoryTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.CertificateRequestedAuditEventTypeNode;
+import com.digitalpetri.opcua.gds.client.objects.CertificateRevokedAuditEventTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.DirectoryTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.KeyCredentialDeliveredAuditEventTypeNode;
 import com.digitalpetri.opcua.gds.client.objects.KeyCredentialManagementFolderTypeNode;
@@ -60,6 +62,14 @@ public class ObjectTypeInitializer {
         NodeId.parse("ns=1;i=109").reindex(namespaceTable, "http://opcfoundation.org/UA/GDS/"),
         CertificateDeliveredAuditEventTypeNode.class,
         CertificateDeliveredAuditEventTypeNode::new);
+    objectTypeManager.registerObjectType(
+        NodeId.parse("ns=1;i=27").reindex(namespaceTable, "http://opcfoundation.org/UA/GDS/"),
+        CertificateRevokedAuditEventTypeNode.class,
+        CertificateRevokedAuditEventTypeNode::new);
+    objectTypeManager.registerObjectType(
+        NodeId.parse("ns=1;i=111").reindex(namespaceTable, "http://opcfoundation.org/UA/GDS/"),
+        AccessTokenRequestedAuditEventTypeNode.class,
+        AccessTokenRequestedAuditEventTypeNode::new);
     objectTypeManager.registerObjectType(
         NodeId.parse("ns=1;i=975").reindex(namespaceTable, "http://opcfoundation.org/UA/GDS/"),
         AccessTokenIssuedAuditEventTypeNode.class,

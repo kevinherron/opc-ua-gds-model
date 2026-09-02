@@ -5,8 +5,7 @@ import org.eclipse.milo.opcua.stack.core.NamespaceTable;
 import org.eclipse.milo.opcua.stack.core.types.DataTypeManager;
 
 public class DataTypeInitializer {
-
-  public void initialize(NamespaceTable namespaceTable, DataTypeManager dataTypeManager) {
+  public static void initialize(NamespaceTable namespaceTable, DataTypeManager dataTypeManager) {
     try {
       registerStructCodecs(namespaceTable, dataTypeManager);
     } catch (Exception e) {
@@ -14,8 +13,8 @@ public class DataTypeInitializer {
     }
   }
 
-  private void registerStructCodecs(NamespaceTable namespaceTable, DataTypeManager dataTypeManager)
-      throws Exception {
+  private static void registerStructCodecs(
+      NamespaceTable namespaceTable, DataTypeManager dataTypeManager) throws Exception {
     dataTypeManager.registerType(
         ApplicationRecordDataType.TYPE_ID.toNodeIdOrThrow(namespaceTable),
         new ApplicationRecordDataType.Codec(),

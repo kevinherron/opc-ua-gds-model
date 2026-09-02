@@ -21,7 +21,7 @@ import org.eclipse.milo.opcua.stack.core.util.Lazy;
 
 /**
  * @see <a
- *     href="https://reference.opcfoundation.org/GDS/docs/6.6.3">https://reference.opcfoundation.org/GDS/docs/6.6.3</a>
+ *     href="https://reference.opcfoundation.org/GDS/docs/6.5.3">https://reference.opcfoundation.org/GDS/docs/6.5.3</a>
  */
 public interface DirectoryType extends FolderType {
   FolderType getApplicationsNode();
@@ -88,7 +88,8 @@ public interface DirectoryType extends FolderType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       String applicationUri = (String) inputValues[0].getValue();
       Out<ApplicationRecordDataType[]> applications = new Out<>();
@@ -97,7 +98,7 @@ public interface DirectoryType extends FolderType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         String applicationUri,
         Out<ApplicationRecordDataType[]> applications)
         throws UaException;
@@ -151,7 +152,8 @@ public interface DirectoryType extends FolderType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       ApplicationRecordDataType application = (ApplicationRecordDataType) inputValues[0].getValue();
       Out<NodeId> applicationId = new Out<>();
@@ -160,7 +162,9 @@ public interface DirectoryType extends FolderType {
     }
 
     protected abstract void invoke(
-        InvocationContext context, ApplicationRecordDataType application, Out<NodeId> applicationId)
+        AbstractMethodInvocationHandler.InvocationContext context,
+        ApplicationRecordDataType application,
+        Out<NodeId> applicationId)
         throws UaException;
   }
 
@@ -196,14 +200,17 @@ public interface DirectoryType extends FolderType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       ApplicationRecordDataType application = (ApplicationRecordDataType) inputValues[0].getValue();
       invoke(context, application);
       return new Variant[] {};
     }
 
-    protected abstract void invoke(InvocationContext context, ApplicationRecordDataType application)
+    protected abstract void invoke(
+        AbstractMethodInvocationHandler.InvocationContext context,
+        ApplicationRecordDataType application)
         throws UaException;
   }
 
@@ -239,14 +246,16 @@ public interface DirectoryType extends FolderType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       invoke(context, applicationId);
       return new Variant[] {};
     }
 
-    protected abstract void invoke(InvocationContext context, NodeId applicationId)
+    protected abstract void invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, NodeId applicationId)
         throws UaException;
   }
 
@@ -298,7 +307,8 @@ public interface DirectoryType extends FolderType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       NodeId applicationId = (NodeId) inputValues[0].getValue();
       Out<ApplicationRecordDataType> application = new Out<>();
@@ -307,7 +317,9 @@ public interface DirectoryType extends FolderType {
     }
 
     protected abstract void invoke(
-        InvocationContext context, NodeId applicationId, Out<ApplicationRecordDataType> application)
+        AbstractMethodInvocationHandler.InvocationContext context,
+        NodeId applicationId,
+        Out<ApplicationRecordDataType> application)
         throws UaException;
   }
 
@@ -423,7 +435,8 @@ public interface DirectoryType extends FolderType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       UInteger startingRecordId = (UInteger) inputValues[0].getValue();
       UInteger maxRecordsToReturn = (UInteger) inputValues[1].getValue();
@@ -455,7 +468,7 @@ public interface DirectoryType extends FolderType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         UInteger startingRecordId,
         UInteger maxRecordsToReturn,
         String applicationName,
@@ -565,7 +578,8 @@ public interface DirectoryType extends FolderType {
     }
 
     @Override
-    protected Variant[] invoke(InvocationContext context, Variant[] inputValues)
+    protected Variant[] invoke(
+        AbstractMethodInvocationHandler.InvocationContext context, Variant[] inputValues)
         throws UaException {
       UInteger startingRecordId = (UInteger) inputValues[0].getValue();
       UInteger maxRecordsToReturn = (UInteger) inputValues[1].getValue();
@@ -589,7 +603,7 @@ public interface DirectoryType extends FolderType {
     }
 
     protected abstract void invoke(
-        InvocationContext context,
+        AbstractMethodInvocationHandler.InvocationContext context,
         UInteger startingRecordId,
         UInteger maxRecordsToReturn,
         String applicationName,

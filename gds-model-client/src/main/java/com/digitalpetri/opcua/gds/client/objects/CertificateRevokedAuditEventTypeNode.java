@@ -1,13 +1,7 @@
 package com.digitalpetri.opcua.gds.client.objects;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
-import org.eclipse.milo.opcua.sdk.client.model.objects.FolderTypeNode;
-import org.eclipse.milo.opcua.sdk.client.nodes.UaNode;
-import org.eclipse.milo.opcua.stack.core.StatusCodes;
-import org.eclipse.milo.opcua.stack.core.UaException;
-import org.eclipse.milo.opcua.stack.core.types.builtin.ExpandedNodeId;
+import org.eclipse.milo.opcua.sdk.client.model.objects.AuditUpdateMethodEventTypeNode;
 import org.eclipse.milo.opcua.stack.core.types.builtin.LocalizedText;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.QualifiedName;
@@ -17,8 +11,9 @@ import org.eclipse.milo.opcua.stack.core.types.enumerated.NodeClass;
 import org.eclipse.milo.opcua.stack.core.types.structured.AccessRestrictionType;
 import org.eclipse.milo.opcua.stack.core.types.structured.RolePermissionType;
 
-public class DirectoryTypeNode extends FolderTypeNode implements DirectoryType {
-  public DirectoryTypeNode(
+public class CertificateRevokedAuditEventTypeNode extends AuditUpdateMethodEventTypeNode
+    implements CertificateRevokedAuditEventType {
+  public CertificateRevokedAuditEventTypeNode(
       OpcUaClient client,
       NodeId nodeId,
       NodeClass nodeClass,
@@ -44,28 +39,5 @@ public class DirectoryTypeNode extends FolderTypeNode implements DirectoryType {
         userRolePermissions,
         accessRestrictions,
         eventNotifier);
-  }
-
-  @Override
-  public FolderTypeNode getApplicationsNode() throws UaException {
-    try {
-      return getApplicationsNodeAsync().get();
-    } catch (ExecutionException e) {
-      throw new UaException(e.getCause());
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new UaException(StatusCodes.Bad_UnexpectedError, e);
-    }
-  }
-
-  @Override
-  public CompletableFuture<? extends FolderTypeNode> getApplicationsNodeAsync() {
-    CompletableFuture<UaNode> future =
-        getMemberNodeAsync(
-            "http://opcfoundation.org/UA/GDS/",
-            "Applications",
-            ExpandedNodeId.parse("i=47"),
-            false);
-    return future.thenApply(node -> (FolderTypeNode) node);
   }
 }

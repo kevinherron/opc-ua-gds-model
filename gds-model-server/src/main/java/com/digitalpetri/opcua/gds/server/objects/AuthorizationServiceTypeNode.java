@@ -121,6 +121,22 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   }
 
   @Override
+  public PropertyTypeNode getSupportedRolesNode() {
+    Optional<VariableNode> propertyNode = getPropertyNode(AuthorizationServiceType.SUPPORTED_ROLES);
+    return (PropertyTypeNode) propertyNode.orElse(null);
+  }
+
+  @Override
+  public String[] getSupportedRoles() {
+    return getProperty(AuthorizationServiceType.SUPPORTED_ROLES).orElse(null);
+  }
+
+  @Override
+  public void setSupportedRoles(String[] value) {
+    setProperty(AuthorizationServiceType.SUPPORTED_ROLES, value);
+  }
+
+  @Override
   public UaMethodNode getGetServiceDescriptionMethodNode() {
     Optional<UaNode> methodNode =
         findNode(
@@ -137,6 +153,39 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
         findNode(
             "http://opcfoundation.org/UA/GDS/",
             "RequestAccessToken",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
+    return (UaMethodNode) methodNode.orElse(null);
+  }
+
+  @Override
+  public UaMethodNode getStartRequestTokenMethodNode() {
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "StartRequestToken",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
+    return (UaMethodNode) methodNode.orElse(null);
+  }
+
+  @Override
+  public UaMethodNode getFinishRequestTokenMethodNode() {
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "FinishRequestToken",
+            node -> node instanceof UaMethodNode,
+            Reference.HAS_COMPONENT_PREDICATE);
+    return (UaMethodNode) methodNode.orElse(null);
+  }
+
+  @Override
+  public UaMethodNode getRefreshTokenMethodNode() {
+    Optional<UaNode> methodNode =
+        findNode(
+            "http://opcfoundation.org/UA/GDS/",
+            "RefreshToken",
             node -> node instanceof UaMethodNode,
             Reference.HAS_COMPONENT_PREDICATE);
     return (UaMethodNode) methodNode.orElse(null);

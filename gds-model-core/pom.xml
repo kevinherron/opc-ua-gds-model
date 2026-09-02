@@ -21,7 +21,12 @@
     <dependency>
       <groupId>org.eclipse.milo</groupId>
       <artifactId>milo-sdk-core</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>${milo.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.milo</groupId>
+      <artifactId>milo-dtd-core</artifactId>
+      <version>${milo.version}</version>
     </dependency>
   </dependencies>
 </project>
