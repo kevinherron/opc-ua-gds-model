@@ -82,7 +82,10 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   @Override
   public void writeServiceUri(String value) throws UaException {
     try {
-      writeServiceUriAsync(value).get();
+      StatusCode statusCode = writeServiceUriAsync(value).get();
+      if (statusCode != null && !statusCode.isGood()) {
+        throw new UaException(statusCode);
+      }
     } catch (ExecutionException e) {
       throw new UaException(e.getCause());
     } catch (InterruptedException e) {
@@ -152,7 +155,10 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   @Override
   public void writeServiceCertificate(ByteString value) throws UaException {
     try {
-      writeServiceCertificateAsync(value).get();
+      StatusCode statusCode = writeServiceCertificateAsync(value).get();
+      if (statusCode != null && !statusCode.isGood()) {
+        throw new UaException(statusCode);
+      }
     } catch (ExecutionException e) {
       throw new UaException(e.getCause());
     } catch (InterruptedException e) {
@@ -227,7 +233,10 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   @Override
   public void writeUserTokenPolicies(UserTokenPolicy[] value) throws UaException {
     try {
-      writeUserTokenPoliciesAsync(value).get();
+      StatusCode statusCode = writeUserTokenPoliciesAsync(value).get();
+      if (statusCode != null && !statusCode.isGood()) {
+        throw new UaException(statusCode);
+      }
     } catch (ExecutionException e) {
       throw new UaException(e.getCause());
     } catch (InterruptedException e) {
@@ -303,7 +312,10 @@ public class AuthorizationServiceTypeNode extends BaseObjectTypeNode
   @Override
   public void writeSupportedRoles(String[] value) throws UaException {
     try {
-      writeSupportedRolesAsync(value).get();
+      StatusCode statusCode = writeSupportedRolesAsync(value).get();
+      if (statusCode != null && !statusCode.isGood()) {
+        throw new UaException(statusCode);
+      }
     } catch (ExecutionException e) {
       throw new UaException(e.getCause());
     } catch (InterruptedException e) {
